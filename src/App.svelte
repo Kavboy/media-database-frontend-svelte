@@ -1,30 +1,26 @@
 <script lang="ts">
-	export let name: string;
+  import { Router, Route } from "svelte-routing";
+  import Header from "./components/HeaderComponent.svelte";
+  import News from "./pages/News.svelte";
+  import { Styles, Container } from "sveltestrap";
+  import FullMedia from "./pages/FullMedia.svelte";
+
+  export let url = "";
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<Styles />
+
+<Router {url}>
+  <Header />
+  <Container id="mdb-route-container">
+    <Route path="/"><News /></Route>
+    <Route path="media/:id" let:params><FullMedia id={params.id} /></Route>
+  </Container>
+</Router>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  :global(#mdb-route-container) {
+    min-height: calc(100vh - 70px - 4.4rem);
+    overflow: hidden;
+  }
 </style>

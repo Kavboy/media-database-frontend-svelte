@@ -1,63 +1,125 @@
-html, body {
-	position: relative;
-	width: 100%;
-	height: 100%;
+:root {
+  --primary-color: #0d253f;
+  --secondary-color: #01b4e4;
+  --tertiary-color: #90cea1;
 }
 
 body {
-	color: #333;
-	margin: 0;
-	padding: 8px;
-	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-	color: rgb(0,100,200);
-	text-decoration: none;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-a:hover {
-	text-decoration: underline;
+.mdb-card-style {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 5px;
+  min-height: 50px;
 }
 
-a:visited {
-	color: rgb(0,80,160);
+.mdb-page-header {
+  text-align: center;
+  color: var(--primary-color);
 }
 
-label {
-	display: block;
+.mdb-media-poster {
+  width: 185px;
+  max-height: 280px;
+  border-radius: 5px;
 }
 
-input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	-webkit-padding: 0.4em 0;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
+.mdb-media:hover {
+  cursor: pointer;
+  transform: scale(1.02);
 }
 
-input:disabled {
-	color: #ccc;
+.mdb-media-link,
+.mdb-media-link:hover {
+  text-decoration: none;
+  color: initial;
 }
 
-button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
+.mdb-fsk {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 28px;
+  border: 1px solid #000;
 }
 
-button:disabled {
-	color: #999;
+.mdb-fsk6 {
+  background-color: #ffe800;
 }
 
-button:not(:disabled):active {
-	background-color: #ddd;
+.mdb-fsk12 {
+  background-color: #22b24c;
 }
 
-button:focus {
-	border-color: #666;
+.mdb-fsk16 {
+  background-color: #35a8e5;
+}
+
+.mdb-fsk18 {
+  background-color: #ed1b24;
+}
+
+@media (min-width: 768px) {
+  .container,
+  .container-md,
+  .container-sm {
+    max-width: 768px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container,
+  .container-md,
+  .container-sm {
+    max-width: 992px !important;
+  }
+}
+@media (min-width: 1300px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1300px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mdb-media {
+      flex-flow: column;
+  }
+
+  .mdb-media-full-head {
+      flex-flow: column;
+  }
+
+  .mdb-see-counter {
+      margin-bottom: 1.5rem;
+  }
+
+  .mdb-media-info {
+      position: relative;
+  }
+
+  .mdb-media-cast {
+      grid-template-columns: 100%;
+  }
+
+  .media-body {
+      margin-left: 1.5rem;
+  }
 }

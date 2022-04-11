@@ -19,7 +19,7 @@ function serve() {
 	return {
 		writeBundle() {
 			if (server) return;
-			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+			server = require('child_process').spawn('npm', ['run', 'start', '--'], {
 				stdio: ['ignore', 'inherit', 'inherit'],
 				shell: true
 			});
@@ -64,6 +64,8 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production
 		}),
+		
+		
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
