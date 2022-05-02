@@ -23,11 +23,16 @@
   } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "fontawesome-svelte";
   import LoginModalComponent from "./LoginModalComponent.svelte";
+  import type { User } from "../utils/interfaces";
+  import { authStore } from "../stores/authStore";
+  import { onDestroy } from "svelte";
 
-  let user = {
-    role: "Admin",
-  };
-  let auth = false;
+  let user: User | null;
+
+  const unsubscribe = authStore.subscribe((value) => {
+    user = value;
+  });
+
   let isOpen = false;
   let loginShow = false;
 
@@ -38,6 +43,8 @@
   const setLoginShow = (value) => {
     loginShow = value;
   };
+
+  onDestroy(unsubscribe);
 </script>
 
 <Navbar id="mdb-header" color="dark" dark expand="md">
@@ -56,7 +63,7 @@
       </NavItem>
     </Nav>
     <Nav navbar id="mdb-login" class="justify-content-end">
-      {#if !auth}
+      {#if !user}
         <NavItem>
           <NavLink
             id="mdb-nav-button"
@@ -82,7 +89,10 @@
               </NavItem>
             {/if}
             <NavItem>
-              <Button id="mdb-nav-button" aria-label="Logout"
+              <Button
+                id="mdb-nav-button"
+                aria-label="Logout"
+                on:click={() => authStore.logout()}
                 ><FontAwesomeIcon icon={faSignOutAlt} /></Button
               >
             </NavItem>

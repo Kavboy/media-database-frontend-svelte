@@ -2,11 +2,22 @@
   import MediaComponent from "../components/media/MediaComponent.svelte";
   import NoMedia from "../components/media/NoMedia.svelte";
   import { Container, Spinner } from "sveltestrap";
-  import { getMedia } from "@src/apis/AxiosLaravel";
+  import { getMedia } from "../apis/AxiosLaravel";
+  import { onDestroy } from "svelte";
+  import Error from "../components/Error.svelte";
+  import { errorStore } from "@src/stores/errorStore";
 
   export let id: string;
 
   const promise = getMedia(id);
+
+  promise.catch((error) => {
+    if (!error.response) {
+      errorStore.setNetworkError();
+    } else {
+      errorStore.setUnexpectedError();
+    }
+  });
 </script>
 
 <Container id="mdb-media-full">

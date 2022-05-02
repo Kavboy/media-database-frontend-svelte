@@ -4,8 +4,17 @@
   import MediaComponent from "../components/media/MediaComponent.svelte";
 
   import { getNews } from "../apis/AxiosLaravel";
+  import { errorStore } from "@src/stores/errorStore";
 
   let promise = getNews();
+
+  promise.catch((error) => {
+    if (!error.response) {
+      errorStore.setNetworkError();
+    } else {
+      errorStore.setUnexpectedError();
+    }
+  });
 
   let title = "News";
 </script>
@@ -17,6 +26,10 @@
       <span class="sr-only">Loading...</span>
     </Spinner>
   {:then medias}
+    {#if medias.length <= 0}
+      <NoMedia />
+      <NoMedia />
+    {/if}
     {#each medias as mediaObject, i}
       <MediaComponent media={mediaObject} />
     {/each}

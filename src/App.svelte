@@ -4,8 +4,12 @@
   import News from "./pages/News.svelte";
   import { Styles, Container } from "sveltestrap";
   import FullMedia from "./pages/FullMedia.svelte";
+  import Error from "./components/Error.svelte";
+  import { authStore } from "./stores/authStore";
 
   export let url = "";
+
+  authStore.check();
 </script>
 
 <Styles />
@@ -13,6 +17,7 @@
 <Router {url}>
   <Header />
   <Container id="mdb-route-container">
+    <Error />
     <Route path="/"><News /></Route>
     <Route path="media/:id" let:params><FullMedia id={params.id} /></Route>
   </Container>
