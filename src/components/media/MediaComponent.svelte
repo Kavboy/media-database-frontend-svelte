@@ -76,9 +76,9 @@
         <h6 class="d-inline">Medium:</h6>
         <p class="d-inline">{media.mediums.join(", ")}</p>
         <p />
-        <h6 class="d-inline">Standort:</h6>
+        <!-- <h6 class="d-inline">Standort:</h6>
         <p class="d-inline">{media.location}</p>
-        <p />
+        <p /> -->
         <h6 class="d-inline">Genre:</h6>
         <p class="d-inline">{genreDisplay(media.genres)}</p>
         <p />

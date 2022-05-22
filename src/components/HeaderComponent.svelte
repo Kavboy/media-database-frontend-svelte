@@ -85,7 +85,9 @@
           <DropdownMenu>
             {#if user?.role === "Creator" || user?.role === "Admin"}
               <NavItem>
-                <DropdownItem>Media Management</DropdownItem>
+                <Link class="dropdown-item" to="/media-management"
+                  >Media Management</Link
+                >
               </NavItem>
             {/if}
             <NavItem>

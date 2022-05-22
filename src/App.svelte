@@ -6,10 +6,16 @@
   import FullMedia from "./pages/FullMedia.svelte";
   import Error from "./components/Error.svelte";
   import { authStore } from "./stores/authStore";
+  import MediaManagement from "./pages/MediaManagement.svelte";
+  import AddMedia from "./pages/AddMedia.svelte";
+  import type { User } from "./utils/interfaces";
 
   export let url = "";
 
   authStore.check();
+  let user: User | null;
+
+  authStore.subscribe((value) => (user = value));
 </script>
 
 <Styles />
@@ -20,6 +26,11 @@
     <Error />
     <Route path="/"><News /></Route>
     <Route path="media/:id" let:params><FullMedia id={params.id} /></Route>
+    {#if user}
+      <Route path="media-management"><MediaManagement /></Route>
+      <Route path="add-media"><AddMedia /></Route>
+    {/if}
+    <Route path="*"><News /></Route>
   </Container>
 </Router>
 
