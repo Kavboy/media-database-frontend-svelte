@@ -62,20 +62,6 @@
 
   loadGenres();
 
-  //   const loadLocations = async () => {
-  //     try {
-  //       laravelLocations = await getLocations();
-  //     } catch (error) {
-  //       if (!error.response) {
-  //         errorStore.setNetworkError();
-  //       } else {
-  //         errorStore.setUnexpectedError();
-  //       }
-  //     }
-  //   };
-
-  //   loadLocations();
-
   const loadFSK = async () => {
     try {
       laravelFSK = await getFSK();
@@ -260,7 +246,7 @@
       <span class="sr-only">Loading...</span>
     </Spinner>
   {:else}
-    <Container class="mdb-add-media-form">
+    <Container class="mdb-add-media-form mdb-card-style">
       <Form
         id="mdb-create-form"
         class="p-3"
@@ -354,31 +340,6 @@
           </Input>
         </FormGroup>
 
-        <!-- <FormGroup id="mdb-create-form.formLocation">
-          <Label
-            >{data?.type === "TV"
-              ? "Serien Standort"
-              : data?.type === "Movie"
-              ? "Film Standort"
-              : "Media"}</Label
-          >
-          <Input
-            required
-            name="location"
-            value={data.location}
-            on:change={handleChange}
-            type="select"
-            {disabled}
-            invalid={validation.location !== null ? !validation.location : null}
-            valid={validation.location}
-          >
-            <option value="" />
-            {#each laravelLocations as location}
-              <option value={location}>{location}</option>
-            {/each}
-          </Input>
-        </FormGroup> -->
-
         <FormGroup id="mdb-create-form.formReleaseDate">
           <Label
             >{data?.type === "TV"
@@ -402,29 +363,6 @@
           />
         </FormGroup>
 
-        <!-- {
-              data?.type?.toLowerCase() === 'tv' &&
-              <SeasonTypeAhead
-                handleSelected={handleSeasons}
-                valid={validation.seasons}
-                invalid={validation.seasons !== null ? !validation.seasons : null}/>
-            } -->
-
-        <!-- {tmdbActive() && <FormGroup id="formBasicTMDBSearch">
-              <Label>{t('add-media.search-for-actors-label')}</Label>
-              <TMDBCastTypeAhead handleSearchValue={handlePersonSearchValue}
-                                 resetValidation={resetValidation}
-                                 disabled={disabled}
-                                 placeholcer={t('add-media.actor-search-placeholder')}
-                                 invalid={validation.title !== null ? !validation.title : null}
-                                 valid={validation.title}
-              />
-              <Form.Control.Feedback type="invalid"
-                                     style={{ display: `${validation.title !== null ? !validation.title ? 'block' : 'none' : 'none'}` }}>
-                {t('form-feedback.title-select')}
-              </Form.Control.Feedback>
-            </FormGroup>} -->
-
         <FormGroup id="mdb-create-form.formReleaseDate">
           <Label
             >{data?.type === "TV"
@@ -444,12 +382,6 @@
               invalid={fileValidation !== null ? !fileValidation : null}
               on:change={handleFile}
             />
-            <!-- {#if data?.poster_path}
-                <Form.Text class="mdb-poster-preview mr-2"><img
-                  src={getPosterSRC(data?.tmdb_id, data?.poster_path, 'w92')} alt={data?.title + ' poster'}/></Form.Text>}
-                <DropzoneComponent handleDroppedFile={handleDroppedFile} disabled={disabled} valid={fileValidation}
-                                   invalid={fileValidation}/>
-                {/if} -->
           </div>
         </FormGroup>
 
@@ -550,4 +482,11 @@
 </Container>
 
 <style>
+  :global(#mdb-create-form) {
+    margin-bottom: 1%;
+  }
+  :global(#mdb-create-form button) {
+    width: 100%;
+    margin-bottom: 1%;
+  }
 </style>

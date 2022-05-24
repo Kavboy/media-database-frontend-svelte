@@ -9,6 +9,7 @@
   import MediaManagement from "./pages/MediaManagement.svelte";
   import AddMedia from "./pages/AddMedia.svelte";
   import type { User } from "./utils/interfaces";
+  import Footer from "./components/Footer.svelte";
 
   export let url = "";
 
@@ -32,11 +33,12 @@
     {/if}
     <Route path="*"><News /></Route>
   </Container>
+  <Footer />
 </Router>
 
 <style>
   :global(#mdb-route-container) {
-    min-height: calc(100vh - 70px - 4.4rem);
+    min-height: calc(100vh - 30px - 4.4rem);
     overflow: hidden;
   }
 </style>

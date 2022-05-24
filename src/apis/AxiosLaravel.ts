@@ -151,6 +151,12 @@ const getMedia = (id): Promise<AxiosResponse<any>> => axiosLaravelAPI().get('/me
     throw error;
   });
 
+/**
+ * Adds media to the database
+ * 
+ * @param data 
+ * @returns 
+ */
 const addMedia = (data: object) : Promise<any> => axiosLaravelAPI().post('/media', data, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -225,9 +231,9 @@ const searchMedia = (data): Promise<AxiosResponse<any>> => axiosLaravelAPI().pos
 
 /**
  * Request to get all mediums
- * @returns {Promise<any>}
+ * @returns {Promise<Array<string>>}
  */
-const getMediums = (): Promise<any> => axiosLaravelAPI().get('/medium')
+const getMediums = (): Promise<Array<string>> => axiosLaravelAPI().get('/medium')
   .then(res => {
     if (res.status === 200) {
       return res.data.map(medium => medium.medium);
@@ -240,9 +246,9 @@ const getMediums = (): Promise<any> => axiosLaravelAPI().get('/medium')
 
 /**
  * Request to get all Genres
- * @returns {Promise<any>}
+ * @returns {Promise<Array<string>>}
  */
-const getGenre = (): Promise<any> => axiosLaravelAPI().get('/genre')
+const getGenre = (): Promise<Array<string>> => axiosLaravelAPI().get('/genre')
   .then(res => {
     if (res.status === 200) {
       return res.data.map(genre => genre.name);
@@ -255,9 +261,9 @@ const getGenre = (): Promise<any> => axiosLaravelAPI().get('/genre')
 
 /**
  * Request to get all age ratings
- * @returns {Promise<any>}
+ * @returns {Promise<Array<string>>}
  */
-const getFSK = (): Promise<any> => axiosLaravelAPI().get('/fsk')
+const getFSK = (): Promise<Array<string>> => axiosLaravelAPI().get('/fsk')
   .then(res => {
     if (res.status === 200) {
       return res.data.map(fsk => fsk.fsk);
@@ -270,9 +276,9 @@ const getFSK = (): Promise<any> => axiosLaravelAPI().get('/fsk')
 
 /**
  * Request to get all roles
- * @returns {Promise<AxiosResponse<any>>}
+ * @returns {Promise<Array<string>>}
  */
-const getRoles = (): Promise<AxiosResponse<any>> => axiosLaravelAPI().get('/role')
+const getRoles = (): Promise<Array<string>> => axiosLaravelAPI().get('/role')
   .then(res => {
     if (res.status === 200) {
       return res.data.map(role => role.role);

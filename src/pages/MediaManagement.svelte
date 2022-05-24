@@ -101,7 +101,7 @@
   }
 
   .mdb-media-table {
-    min-height: calc(100vh - 300px);
+    min-height: calc(100vh - 200px);
   }
 
   .mdb-table-poster {

@@ -42,12 +42,15 @@ function createAuth() {
 
 	const whoami = async () => {
 		try {
-			const res = await axiosLaravelAPI().get('/user/whoami');
+			let user: User | null;
+			subscribe((value) => (user = value));
+			if (!user) {
+				const res = await axiosLaravelAPI().get('/user/whoami');
 	  
-			if (res.status === 200) {
-				set(res.data);
-			}
-	  
+				if (res.status === 200) {
+					set(res.data);
+				}
+			}  
 		} catch (error) {
 			throw error;
 		}
