@@ -40,10 +40,6 @@
     isOpen = event.detail.isOpen;
   }
 
-  const setLoginShow = (value) => {
-    loginShow = value;
-  };
-
   onDestroy(unsubscribe);
 </script>
 
@@ -69,7 +65,7 @@
             id="mdb-nav-button"
             on:click={(e) => {
               e.preventDefault();
-              setLoginShow(true);
+              loginShow = true;
             }}
           >
             <FontAwesomeIcon icon={faKey} />
@@ -104,7 +100,7 @@
     </Nav>
   </Collapse>
 </Navbar>
-<LoginModalComponent show={loginShow} onHide={() => setLoginShow(false)} />
+<LoginModalComponent show={loginShow} onHide={() => (loginShow = false)} />
 
 <style>
   :global(.no-button) {
