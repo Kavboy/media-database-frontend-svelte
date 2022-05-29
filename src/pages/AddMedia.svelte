@@ -194,7 +194,7 @@
       data.youtube_link = getKeyFromYoutubeLink(data.youtube_link);
 
       Object.keys(data).forEach((el) => {
-        if (el === "mediums" || el === "genres" || "seasons") {
+        if (el === "mediums" || el === "genres") {
           data[el]?.forEach((arr) => {
             fd.append(el + "[]", arr);
           });
