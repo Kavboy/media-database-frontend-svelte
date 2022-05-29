@@ -133,15 +133,6 @@
     });
   };
 
-  const handleChange = (e: Event) => {
-    resetValidation();
-    setData({
-      ...data,
-      [(e.target as HTMLInputElement).name]: (e.target as HTMLInputElement)
-        .value,
-    });
-  };
-
   const handleFile = (e: Event) => {
     resetValidation();
     const input = e.target as HTMLInputElement;
@@ -203,7 +194,7 @@
       data.youtube_link = getKeyFromYoutubeLink(data.youtube_link);
 
       Object.keys(data).forEach((el) => {
-        if (el === "mediums" || el === "genres") {
+        if (el === "mediums" || el === "genres" || "seasons") {
           data[el]?.forEach((arr) => {
             fd.append(el + "[]", arr);
           });
@@ -223,6 +214,7 @@
       try {
         addMedia(fd);
       } catch (error) {
+        console.log(error);
         resetValidation();
         disabled = false;
         if (!error.response) {
@@ -257,8 +249,7 @@
           <Label>Typ der Medie</Label>
           <Input
             name="type"
-            value={data.type}
-            on:change={handleChange}
+            bind:value={data.type}
             type="select"
             {disabled}
             invalid={validation.type !== null ? !validation.type : null}
@@ -283,8 +274,7 @@
           </Label>
           <Input
             name="title"
-            value={data.title}
-            on:change={handleChange}
+            bind:value={data.title}
             type="text"
             {disabled}
             invalid={validation.title !== null ? !validation.title : null}
@@ -303,8 +293,7 @@
           >
           <Input
             name="overview"
-            value={data.overview}
-            on:change={handleChange}
+            bind:value={data.overview}
             as="textarea"
             rows={3}
             {disabled}
@@ -324,8 +313,7 @@
           <Input
             required
             name="age_rating"
-            value={data.age_rating}
-            on:change={handleChange}
+            bind:value={data.age_rating}
             type="select"
             {disabled}
             invalid={validation.age_rating !== null
@@ -351,8 +339,7 @@
           <Input
             required
             name="release_date"
-            value={data.release_date}
-            on:change={handleChange}
+            bind:value={data.release_date}
             type="date"
             {disabled}
             invalid={validation.release_date !== null
@@ -407,8 +394,7 @@
           </FormText>
           <Input
             name="youtube_link"
-            value={data.youtube_link}
-            on:change={handleChange}
+            bind:value={data.youtube_link}
             pattern="https://((www)?(\.)?)youtube(\.)com/watch(\?)v=([a-zA-Z\d&=])+"
             type="url"
             {disabled}
